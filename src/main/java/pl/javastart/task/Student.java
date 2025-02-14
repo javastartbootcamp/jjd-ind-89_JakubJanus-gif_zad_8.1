@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class Student {
     int index;
-    String firstName, lastName;
+    String firstName;
+    String lastName;
     Map<String, Double> grades = new HashMap<>();
 
     Student(int index, String firstName, String lastName) {

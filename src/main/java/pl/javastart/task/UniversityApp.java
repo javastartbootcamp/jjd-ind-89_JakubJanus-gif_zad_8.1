@@ -137,7 +137,11 @@ public class UniversityApp {
      * @param index - numer indesku studenta dla którego wyświetlić oceny
      */
     public void printGradesForStudent(int index) {
-        students.getOrDefault(index, new Student(index, "", "")).printGrades();
+        if (!students.containsKey(index)) {
+            System.out.println("Student o indeksie " + index + " nie istnieje");
+            return;
+        }
+        students.get(index).printGrades();
     }
 
     /**

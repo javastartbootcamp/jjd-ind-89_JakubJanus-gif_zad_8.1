@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Group {
-    String code, name;
+    String code;
+    String name;
     Lecturer lecturer;
     Map<Integer, Student> students = new HashMap<>();
     Map<Integer, Double> grades = new HashMap<>();

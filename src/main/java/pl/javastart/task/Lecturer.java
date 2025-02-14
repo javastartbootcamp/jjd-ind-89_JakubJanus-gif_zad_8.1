@@ -2,7 +2,9 @@ package pl.javastart.task;
 
 public class Lecturer {
     int id;
-    String degree, firstName, lastName;
+    String degree;
+    String firstName;
+    String lastName;
 
     Lecturer(int id, String degree, String firstName, String lastName) {
         this.id = id;
