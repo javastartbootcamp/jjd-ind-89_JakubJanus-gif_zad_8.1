@@ -1,4 +1,5 @@
 package pl.javastart.task;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +21,7 @@ public class UniversityApp {
      */
     public void createLecturer(int id, String degree, String firstName, String lastName) {
         if (lecturers.containsKey(id)) {
-            Lecturer existingLecturer = lecturers.get(id);
-            System.out.println("Prowadzący z id " + id + " (" + existingLecturer.getDescription() + ") już istnieje");
+            System.out.println("Prowadzący z id " + id + " już istnieje");
         } else {
             Lecturer newLecturer = new Lecturer(id, degree, firstName, lastName);
             lecturers.put(id, newLecturer);
@@ -66,10 +66,17 @@ public class UniversityApp {
             System.out.println("Grupa " + groupCode + " nie istnieje");
             return;
         }
-        students.putIfAbsent(index, new Student(index, firstName, lastName));
-        groups.get(groupCode).addStudent(students.get(index));
-    }
 
+        Group group = groups.get(groupCode);
+
+        if (group.hasStudent(index)) {
+            System.out.println("Student o indeksie " + index + " jest już w grupie " + groupCode);
+            return;
+        }
+
+        students.putIfAbsent(index, new Student(index, firstName, lastName));
+        group.addStudent(students.get(index));
+    }
 
     /**
      * Wyświetla informacje o grupie w zadanym formacie.
@@ -108,7 +115,11 @@ public class UniversityApp {
      * @param grade        - ocena
      */
     public void addGrade(int studentIndex, String groupCode, double grade) {
-        if (!groups.containsKey(groupCode) || !groups.get(groupCode).hasStudent(studentIndex)) {
+        if (!groups.containsKey(groupCode)) {
+            System.out.println("Grupa " + groupCode + " nie istnieje");
+            return;
+        }
+        if (!groups.get(groupCode).hasStudent(studentIndex)) {
             System.out.println("Student o indeksie " + studentIndex + " nie jest zapisany do grupy " + groupCode);
             return;
         }

@@ -1,4 +1,5 @@
 package pl.javastart.task;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
