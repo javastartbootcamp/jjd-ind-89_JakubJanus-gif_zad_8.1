@@ -137,11 +137,12 @@ public class UniversityApp {
      * @param index - numer indesku studenta dla którego wyświetlić oceny
      */
     public void printGradesForStudent(int index) {
-        if (!students.containsKey(index)) {
-            System.out.println("Student o indeksie " + index + " nie istnieje");
+        Student student = students.get(index);
+        if (student == null) {
+            System.out.println("Brak ocen dla studenta o indeksie " + index);
             return;
         }
-        students.get(index).printGrades();
+        student.printGrades();
     }
 
     /**
@@ -154,9 +155,11 @@ public class UniversityApp {
      * @param groupCode - kod grupy, dla której wyświetlić oceny
      */
     public void printGradesForGroup(String groupCode) {
-        if (groups.containsKey(groupCode)) {
-            groups.get(groupCode).printGrades();
+        if (!groups.containsKey(groupCode)) {
+            System.out.println("Grupa " + groupCode + " nie istnieje");
+            return;
         }
+        groups.get(groupCode).printGrades();
     }
 
     /**
